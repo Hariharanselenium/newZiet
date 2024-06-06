@@ -35,7 +35,7 @@ Scenario: 04 Changing the Time Zone to market hours (8:00 AM EST)
     
 Scenario: 05 To Send Message to the Prospects
  Given The user logs in the Zeitblast application with "super admin" credentials
-    When The user creates a new market and enters the market name "Market01", Area code "470", and Call forwarding number "4704704707"
+   When The user creates a new market
     Then The user should observe a success message confirming the creation of the new market
     And The user adds an outbound number in the existing market
     Then The user should observe a success message confirming the outbound number is added 

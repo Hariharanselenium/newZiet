@@ -58,6 +58,57 @@ public class SettingsPage {
 	
 		WebUI.clickElementWithJs(By.xpath(FrameworkConstants.CREATE_NEW_MARKET_BUTTON));
 
+		WebUI.setText(By.xpath(FrameworkConstants.INPUT_MARKET_NAME), name);	
+//		WebUI.setText(By.xpath(FrameworkConstants.INPUT_MARKET_NAME), FrameworkConstants.MARKET_NAME);
+		int attempts = 0;
+		while (attempts < 3) {
+		    wait.until(ExpectedConditions.elementToBeClickable(WebUI.getWebElement(By.xpath(FrameworkConstants.ENTER_AREACODE_BOX))));
+		    WebUI.getWebElement(By.xpath(FrameworkConstants.ENTER_AREACODE_BOX)).clear();
+		  try {
+		    WebUI.clickElement(By.xpath(FrameworkConstants.ENTER_AREACODE_BOX));
+		  }
+		  catch(ElementClickInterceptedException e) {
+			  WebUI.clickElementWithJs(By.xpath(FrameworkConstants.ENTER_AREACODE_BOX));  
+		  }
+		  for(int i=0;i<code.length();i++) {
+		  String myString = String.valueOf(code.charAt(i));
+//		  WebUI.setText(By.xpath("(//input)[3]"), code, Keys.DOWN);
+	    WebUI.setText(By.xpath(FrameworkConstants.ENTER_AREACODE_BOX), myString);
+		  }
+//		    WebUI.sendKeys(By.xpath("(//input)[3]"), Keys.DOWN);
+		    WebUI.sendKeys(By.xpath(FrameworkConstants.ENTER_AREACODE_BOX), Keys.ENTER);
+		    Thread.sleep(1500);
+		  
+		   
+		    if (WebUI.getTextElement(By.xpath(FrameworkConstants.ENTER_AREACODE)).equals(code)) {
+		       
+		        break;
+		    }
+		    attempts++;
+		}
+		
+		System.out.println(WebUI.getTextElement(By.xpath(FrameworkConstants.ENTER_AREACODE)));
+//		WebUI.setText(By.xpath("(//input[@type='text'])[4]"), FrameworkConstants.FORWARDDING_NUMBER);
+		WebUI.setText(By.xpath(FrameworkConstants.INPUT_OUTBOUND_NUMBER),no);
+try {
+		wait.until(ExpectedConditions.elementToBeClickable(WebUI.getWebElement(By.xpath(FrameworkConstants.SUBMIT_BUTTON))))
+				.click();
+}
+catch (TimeoutException e) {
+   
+    System.out.println("Element is not clickable without the Forwording number.");
+}
+catch (ElementClickInterceptedException e) {
+	   
+    System.out.println("Element is not clickable without the Forwording number.");
+}
+
+	}
+	public void createmarket() throws InterruptedException {
+
+		
+		WebUI.clickElementWithJs(By.xpath(FrameworkConstants.CREATE_NEW_MARKET_BUTTON));
+
 //		WebUI.setText(By.xpath(FrameworkConstants.INPUT_MARKET_NAME), name);	
 		WebUI.setText(By.xpath(FrameworkConstants.INPUT_MARKET_NAME), FrameworkConstants.MARKET_NAME);
 		int attempts = 0;

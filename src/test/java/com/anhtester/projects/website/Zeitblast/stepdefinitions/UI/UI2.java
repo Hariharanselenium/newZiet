@@ -100,6 +100,11 @@ public void the_user_creates_a_new_market_and_enters_the_market_name_area_code_a
 	settings.createmarket(name,code,no);
 
 }
+@When("The user creates a new market")
+public void User_creates_a_new_market() throws InterruptedException {
+	settings.clickSettings();
+	settings.createmarket();
+}
 @Then("The user should observe a success message confirming the creation of the new market")
 public void the_user_should_observe_a_success_message_confirming_the_creation_of_the_new_market() throws InterruptedException {
 	settings.createMarketValidation();
