@@ -24,14 +24,14 @@ public class EmailSendUtils {
             System.out.println("****************************************");
             System.out.println("Send Email - START");
             System.out.println("****************************************");
-
-            System.out.println("File name: " + FrameworkConstants.getExtentReportFilePath());
-
-            String messageBody = getTestCasesCountInFormat(count_totalTCs, count_passedTCs, count_failedTCs,
-                    count_skippedTCs);
-            //System.out.println(messageBody);
-
             String attachmentFile_ExtentReport = FrameworkConstants.getExtentReportFilePath();
+            System.out.println("File name: " + attachmentFile_ExtentReport);
+
+//            String messageBody = getTestCasesCountInFormat(count_totalTCs, count_passedTCs, count_failedTCs,
+//                    count_skippedTCs);
+            //System.out.println(messageBody);
+            String messageBody ="";
+           
 
             try {
                 EmailAttachmentsSender.sendEmailWithAttachments(SERVER, PORT, FROM, PASSWORD, TO, SUBJECT, messageBody,
